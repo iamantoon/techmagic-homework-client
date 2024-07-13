@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Rent {{brand}} {{model}}</h4>
+    <button type="button" class="btn-close close pull-right" (click)="bsModalRef.hide()">
+        <span class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6 mt-1">
+            <p><strong>Car</strong></p>
+            <p><strong>Year</strong></p>
+            <p><strong>Type</strong></p>
+            <p><strong>Cost</strong></p>
+            <p><strong>Select the date you will return the car</strong></p>
+        </div>
+        <div class="col-md-6 mt-1">
+            <p>{{brand}} {{model}}</p>
+            <p>{{manufactureYear}}</p>
+            <p>{{type}}</p>
+            <p>{{totalRentCost === 0 ? rentCost : totalRentCost}}$</p>
+            <app-date-picker
+                [formControl]="$any(rentForm.controls['date'])" 
+                [label]="'Select date'" 
+                [minDate]="minDate"
+            ></app-date-picker>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="rent()">Rent</button>
+    <button type="button" class="btn btn-outline-primary" (click)="bsModalRef.hide()">Close</button>
+</div>

@@ -1,0 +1,19 @@
+@if (car) {
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img [src]="car.photoUrl" [alt]="car.brand" class="w-100">
+            </div>
+            <div class="col-md-6 mt-5">
+                <h2>{{car.brand}} {{car.carModel}}</h2>
+                <p style="font-size: 1.2em;">{{car.rentCost}}$ per hour</p>
+                <p style="font-size: 1em;">Cost: {{car.cost}}$</p>
+                <p style="font-size: 1em;">Manufacture Year: {{car.year}}</p>
+                <p>Type: {{car.type}}</p>
+                <div class="row mt-3">
+                    <button class="btn btn-primary" (click)="openRentCarModal()">Rent car</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

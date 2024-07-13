@@ -1,0 +1,5 @@
+<div class="row align-items-md-stretch">
+    @for (rental of activeRentals; track $index) {
+        <app-return-car-item [rental]="rental"></app-return-car-item>
+    }
+</div>
