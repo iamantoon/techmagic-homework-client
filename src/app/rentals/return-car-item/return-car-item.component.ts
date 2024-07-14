@@ -2,7 +2,6 @@ import { Component, inject, input } from '@angular/core';
 import { Rental } from '../../_models/rental.model';
 import { DatePipe } from '@angular/common';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
-import { RentalService } from '../../_services/rental.service';
 import { ReturnCarModalComponent } from '../../modals/return-car-modal/return-car-modal.component';
 
 @Component({
@@ -19,7 +18,7 @@ export class ReturnCarItemComponent {
 
   openReturnCarModal(){
     const initialState: ModalOptions = {
-      class: 'modal-lg',
+      class: 'modal-md',
       initialState: {
         id: this.rental()._id,
         brand: this.rental().car.brand,

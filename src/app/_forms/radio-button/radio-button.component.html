@@ -1,0 +1,12 @@
+<div class="form-group" *ngFor="let option of options()">
+    <label>
+        <input
+            type="radio" 
+            name="category" 
+            value="{{option}}" 
+            class="form-check-input my-1" 
+            [formControl]="control"
+        > 
+        <label class="form-check-label" for="carDamagedYes">{{option}}</label>
+    </label>
+</div>
