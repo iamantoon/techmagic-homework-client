@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { PhoneFormatterDirective } from '../../_directives/phone-formatter.directive';
 import { AuthService } from '../../_services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { AuthService } from '../../_services/auth.service';
 })
 export class LoginComponent implements OnInit {
   private fb = inject(FormBuilder);
+  private toastr = inject(ToastrService);
   loginForm: FormGroup = new FormGroup({});
   private authService = inject(AuthService);
   private router = inject(Router);
@@ -34,7 +36,9 @@ export class LoginComponent implements OnInit {
       const formValue = this.loginForm.value;
       this.authService.login(formValue).subscribe({
         next: _ => this.router.navigate(['/']),
-        error: err => console.error('Login error:', err)
+        error: _ => {
+          this.toastr.error('Invalid data');
+        }
       });
     } 
   }

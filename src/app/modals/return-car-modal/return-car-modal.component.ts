@@ -7,6 +7,8 @@ import { ReturnCar } from '../../_models/car.model';
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../../_services/auth.service';
 import { RadioButtonComponent } from '../../_forms/radio-button/radio-button.component';
+import { ToastrService } from 'ngx-toastr';
+import { RentalService } from '../../_services/rental.service';
 
 @Component({
   selector: 'app-return-car-modal',
@@ -18,6 +20,8 @@ import { RadioButtonComponent } from '../../_forms/radio-button/radio-button.com
 export class ReturnCarModalComponent implements OnInit {
   private carService = inject(CarService);
   private authService = inject(AuthService);
+  private rentalService = inject(RentalService);
+  private toastr = inject(ToastrService);
   private fb = inject(FormBuilder);
   radioButtonOptions: string[] = ['Yes', 'No'];
   rentalForm: FormGroup = new FormGroup({});
@@ -33,13 +37,12 @@ export class ReturnCarModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.returnCar();
     this.actualReturnDate = new Date();
   }
 
   initializeForm(){
     this.rentalForm = this.fb.group({
-      carDamaged: ["No", Validators.required]
+      carDamaged: ['No', Validators.required]
     });
   }
 
@@ -48,10 +51,15 @@ export class ReturnCarModalComponent implements OnInit {
       rentalId: this.rentalId,
       userId: this.authService.currentUser()!.id,
       isDamaged: this.rentalForm.controls['carDamaged'].value
-    }
+    };
     this.carService.returnCar(requestBody).subscribe({
-      next: response => {
-        console.log(response);
+      next: _ => {
+        this.toastr.success('Car returned successfully');
+        this.rentalService.activeRentals.update(value => value.filter(r => r._id !== this.rentalId));
+        this.bsModalRef.hide();
+      },
+      error: _ => {
+        this.toastr.error('Something went wrong');
         this.bsModalRef.hide();
       }
     })

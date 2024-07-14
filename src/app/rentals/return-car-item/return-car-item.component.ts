@@ -20,7 +20,7 @@ export class ReturnCarItemComponent {
     const initialState: ModalOptions = {
       class: 'modal-md',
       initialState: {
-        id: this.rental()._id,
+        rentalId: this.rental()._id,
         brand: this.rental().car.brand,
         model: this.rental().car.carModel,
         rentCost: this.rental().finalRentalCost,

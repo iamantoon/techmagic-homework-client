@@ -2,11 +2,11 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { RentCar } from '../../_models/car.model';
 import { AuthService } from '../../_services/auth.service';
-import { RentalService } from '../../_services/rental.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DatePickerComponent } from '../../_forms/date-picker/date-picker.component';
 import { Subscription } from 'rxjs';
 import { CarService } from '../../_services/car.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-rent-car-modal',
@@ -16,9 +16,9 @@ import { CarService } from '../../_services/car.service';
   styleUrl: './rent-car-modal.component.scss'
 })
 export class RentCarModalComponent implements OnInit, OnDestroy {
-  private rentalService = inject(RentalService);
   private authService = inject(AuthService);
   private carService = inject(CarService);
+  private toastr = inject(ToastrService);
   private fb = inject(FormBuilder);
   rentForm: FormGroup = new FormGroup({});
   minDate?: Date;
@@ -71,9 +71,11 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
         userId: this.authService.currentUser()!.id,
         expectedReturnDate: this.rentForm.controls['date'].value
       }
-      this.carService.rentCar(requestBody).subscribe(response => console.log(response));
-      this.carService.getCars();
-      this.bsModalRef.hide();
+      this.carService.rentCar(requestBody).subscribe(_ => {
+        this.carService.cars.update(value => value.filter(c => c._id !== this.id));
+        this.toastr.success('Car rented successfully');
+        this.bsModalRef.hide();
+      });
     }
   }
 

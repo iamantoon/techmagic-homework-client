@@ -12,13 +12,10 @@ import { NgFor } from '@angular/common';
   styleUrl: './return-car.component.scss'
 })
 export class ReturnCarComponent implements OnInit {
-  private rentalService = inject(RentalService);
-  public activeRentals: Rental[] = [];
+  rentalService = inject(RentalService);
 
   ngOnInit(): void {
-    this.rentalService.getActiveRentals().subscribe({
-      next: response => this.activeRentals = response
-    })
+    this.rentalService.getActiveRentals();
   }
 
   trackByFn(index: number, item: any): number {

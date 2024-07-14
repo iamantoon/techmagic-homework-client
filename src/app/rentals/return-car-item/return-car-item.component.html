@@ -1,6 +1,6 @@
 <div class="h-100 p-5 text-bg-white rounded-3 custom-border">
     <h3>{{rental().car.brand}} {{rental().car.carModel}}</h3>
-    <p>Expected rental date: {{rental().expectedReturnDate | date:'longDate'}}</p>
-    <p>Final rental cost: {{rental().finalRentalCost}}$</p>
+    <p>Expected return date: <span class="text-primary">{{rental().expectedReturnDate | date:'longDate'}}</span></p>
+    <p>Expected rental cost: <span class="text-primary">${{rental().finalRentalCost}}</span></p>
     <button class="btn btn-outline-primary" type="button" (click)="openReturnCarModal()">Return</button>
 </div>

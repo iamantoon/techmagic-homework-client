@@ -1,5 +1,5 @@
 <div class="row align-items-md-stretch">
-    <div *ngFor="let rental of activeRentals; trackBy: trackByFn" class="mb-3">
+    <div *ngFor="let rental of rentalService.activeRentals(); trackBy: trackByFn" class="mb-3">
       <app-return-car-item [rental]="rental"></app-return-car-item>
     </div>
 </div>

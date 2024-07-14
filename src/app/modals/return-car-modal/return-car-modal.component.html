@@ -5,7 +5,7 @@
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div class="form-group">
                     <form [formGroup]="rentalForm" autocomplete="off">
-                        <label for="carDamaged">Has the car been damaged?</label>
+                        <label for="carDamaged" class="mb-1">Has the car been damaged?</label>
                         <app-radio-button
                             [formControl]="$any(rentalForm.controls['carDamaged'])" 
                             [options]="radioButtonOptions"
@@ -32,6 +32,6 @@
                 <strong>${{calculateTotalPenalty()}}</strong>
             </li>
         </ul>
-        <button type="button" class="btn btn-lg btn-primary mt-2 w-100">Great, thanks!</button>
+        <button type="button" class="btn btn-lg btn-primary mt-2 w-100" (click)="returnCar()">Great, thanks!</button>
     </div>
 </div>

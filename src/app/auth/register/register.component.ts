@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { PhoneFormatterDirective } from '../../_directives/phone-formatter.directive';
 import { AuthService } from '../../_services/auth.service';
 import { Register } from '../../_models/auth.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private toastr = inject(ToastrService);
   registerForm: FormGroup = new FormGroup({});
   passwordSubscription?: Subscription;
 
@@ -53,7 +55,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       const formValue: Register = this.registerForm.value;
       this.authService.login(formValue).subscribe({
         next: _ => this.router.navigate(['/']),
-        error: err => console.error('Login error:', err)
+        error: err => this.toastr.error(err)
       });
     } 
   }

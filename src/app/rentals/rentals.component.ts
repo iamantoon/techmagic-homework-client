@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RentalService } from '../_services/rental.service';
 import { Rental } from '../_models/rental.model';
 import { DatePipe, TitleCasePipe } from '@angular/common';
@@ -13,11 +13,11 @@ import { RouterLink } from '@angular/router';
 })
 export class RentalsComponent implements OnInit {
   private rentalService = inject(RentalService);
-  rentals: Rental[] = [];
+  returnedCars: Rental[] = [];
 
   ngOnInit(): void {
     this.rentalService.getPreviousRentals().subscribe({
-      next: response => this.rentals = response
+      next: response => this.returnedCars = response
     })
   }
 }
