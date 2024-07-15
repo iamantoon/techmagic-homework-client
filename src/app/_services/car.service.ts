@@ -26,6 +26,6 @@ export class CarService {
   }
 
   returnCar(requestBody: ReturnCar){
-    return this.http.post(this.baseUrl + 'return', requestBody);
+    return this.http.post(this.baseUrl + requestBody.carId + '/return', requestBody);
   }
 }

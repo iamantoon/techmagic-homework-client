@@ -13,11 +13,11 @@ import { AuthService } from '../../_services/auth.service';
   styleUrl: './car-item.component.scss'
 })
 export class CarItemComponent {
-  car = input.required<Car>();
+  public car = input.required<Car>();
   private modalService = inject(BsModalService);
   private router = inject(Router);
   private authService = inject(AuthService);
-  bsModalRef: BsModalRef<RentCarModalComponent> = new BsModalRef<RentCarModalComponent>();
+  public bsModalRef: BsModalRef<RentCarModalComponent> = new BsModalRef<RentCarModalComponent>();
 
   openRentCarModal(){
     if (!this.authService.currentUser()) {
@@ -29,10 +29,10 @@ export class CarItemComponent {
       initialState: {
         id: this.car()._id,
         brand: this.car().brand,
+        model: this.car().carModel,
         rentCost: this.car().rentCost,
         type: this.car().type,
-        manufactureYear: this.car().year,
-        model: this.car().carModel
+        year: this.car().year
       }
     }
     this.bsModalRef = this.modalService.show(RentCarModalComponent, initialState);

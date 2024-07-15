@@ -12,9 +12,9 @@ import { ReturnCarModalComponent } from '../../modals/return-car-modal/return-ca
   styleUrl: './return-car-item.component.scss'
 })
 export class ReturnCarItemComponent {
-  rental = input.required<Rental>();
+  public rental = input.required<Rental>();
   private modalService = inject(BsModalService);
-  bsModalRef: BsModalRef<ReturnCarModalComponent> = new BsModalRef<ReturnCarModalComponent>();
+  public bsModalRef: BsModalRef<ReturnCarModalComponent> = new BsModalRef<ReturnCarModalComponent>();
 
   openReturnCarModal(){
     const initialState: ModalOptions = {
@@ -24,7 +24,8 @@ export class ReturnCarItemComponent {
         brand: this.rental().car.brand,
         model: this.rental().car.carModel,
         rentCost: this.rental().finalRentalCost,
-        startDate: this.rental().startDate
+        startDate: this.rental().startDate,
+        carId: this.rental().carId
       }
     }
     this.bsModalRef = this.modalService.show(ReturnCarModalComponent, initialState);

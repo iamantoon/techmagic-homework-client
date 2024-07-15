@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './return-car.component.scss'
 })
 export class ReturnCarComponent implements OnInit {
-  rentalService = inject(RentalService);
+  public rentalService = inject(RentalService);
 
   ngOnInit(): void {
     this.rentalService.getActiveRentals();

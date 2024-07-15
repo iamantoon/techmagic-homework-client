@@ -13,11 +13,11 @@ import { RouterLink } from '@angular/router';
 })
 export class RentalsComponent implements OnInit {
   private rentalService = inject(RentalService);
-  returnedCars: Rental[] = [];
+  public returnedCars: Rental[] = [];
 
   ngOnInit(): void {
     this.rentalService.getPreviousRentals().subscribe({
       next: response => this.returnedCars = response
-    })
+    });
   }
 }

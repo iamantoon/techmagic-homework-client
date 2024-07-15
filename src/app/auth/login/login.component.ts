@@ -16,9 +16,9 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
   private fb = inject(FormBuilder);
   private toastr = inject(ToastrService);
-  loginForm: FormGroup = new FormGroup({});
   private authService = inject(AuthService);
   private router = inject(Router);
+  public loginForm: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
     this.initializeForm();
@@ -36,9 +36,7 @@ export class LoginComponent implements OnInit {
       const formValue = this.loginForm.value;
       this.authService.login(formValue).subscribe({
         next: _ => this.router.navigate(['/']),
-        error: _ => {
-          this.toastr.error('Invalid data');
-        }
+        error: _ => this.toastr.error('Invalid data')
       });
     } 
   }

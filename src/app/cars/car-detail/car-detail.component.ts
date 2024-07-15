@@ -19,15 +19,15 @@ export class CarDetailComponent implements OnInit {
   private router = inject(Router);
   private authService = inject(AuthService);
   private modalService = inject(BsModalService);
-  bsModalRef: BsModalRef<RentCarModalComponent> = new BsModalRef<RentCarModalComponent>();
-  car?: Car;
+  public bsModalRef: BsModalRef<RentCarModalComponent> = new BsModalRef<RentCarModalComponent>();
+  public car?: Car;
 
   ngOnInit(): void {
     const id: string | null = this.activatedRoute.snapshot.paramMap.get('id');
     if (id) {
       const car = this.carService.cars().find(car => car._id === id);
       if (car) this.car = car;
-      else this.carService.getCarById(id).subscribe(response => this.car = response)
+      else this.carService.getCarById(id).subscribe(response => this.car = response);
     }
   }
 
@@ -42,10 +42,10 @@ export class CarDetailComponent implements OnInit {
         initialState: {
           id: this.car._id,
           brand: this.car.brand,
+          model: this.car.carModel,
           rentCost: this.car.rentCost,
           type: this.car.type,
-          manufactureYear: this.car.year,
-          model: this.car.carModel
+          year: this.car.year
         }
       }
      this.bsModalRef = this.modalService.show(RentCarModalComponent, initialState);

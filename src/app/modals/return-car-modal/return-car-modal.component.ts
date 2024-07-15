@@ -23,10 +23,11 @@ export class ReturnCarModalComponent implements OnInit {
   private rentalService = inject(RentalService);
   private toastr = inject(ToastrService);
   private fb = inject(FormBuilder);
-  radioButtonOptions: string[] = ['Yes', 'No'];
-  rentalForm: FormGroup = new FormGroup({});
-  bsModalRef = inject(BsModalRef);
-  car?: CarInfo;
+  public radioButtonOptions: string[] = ['Yes', 'No'];
+  public rentalForm: FormGroup = new FormGroup({});
+  public bsModalRef = inject(BsModalRef);
+  car!: CarInfo;
+  carId!: string;
   rentalId!: string;
   startDate?: Date;
   totalRentalCost?: number;
@@ -50,6 +51,7 @@ export class ReturnCarModalComponent implements OnInit {
     const requestBody: ReturnCar = {
       rentalId: this.rentalId,
       userId: this.authService.currentUser()!.id,
+      carId: this.carId,
       isDamaged: this.rentalForm.controls['carDamaged'].value === 'Yes' ? true : false
     };
     this.carService.returnCar(requestBody).subscribe({

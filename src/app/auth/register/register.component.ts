@@ -20,8 +20,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
-  registerForm: FormGroup = new FormGroup({});
-  passwordSubscription?: Subscription;
+  public registerForm: FormGroup = new FormGroup({});
+  private passwordSubscription?: Subscription;
 
   ngOnInit(): void {
     this.initializeForm();

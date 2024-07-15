@@ -20,19 +20,17 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
   private carService = inject(CarService);
   private toastr = inject(ToastrService);
   private fb = inject(FormBuilder);
-  rentForm: FormGroup = new FormGroup({});
-  minDate?: Date;
+  public rentForm: FormGroup = new FormGroup({});
+  public minDate?: Date;
   bsModalRef = inject(BsModalRef);
-
   id?: string;
   brand: string = '';
   rentCost: number = 0;
   type: string = '';
-  manufactureYear: number = 0;
+  year: number = 0;
   model: string = '';
   rentDays: number = 1;
   totalRentCost: number = 0;
-
   rentCostSubscription?: Subscription;
 
   ngOnInit(): void {
