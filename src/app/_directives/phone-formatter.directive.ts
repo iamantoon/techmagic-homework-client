@@ -12,6 +12,7 @@ export class PhoneFormatterDirective {
   @HostListener('input', ['$event'])
   onInput(event: Event): void {
     let input: string = this.el.nativeElement.value;
+    const caretPosition = this.el.nativeElement.selectionStart;
 
     if (input == null) {
       input = '';
@@ -25,6 +26,10 @@ export class PhoneFormatterDirective {
 
     const formattedInput = this.formatPhoneNumber(input);
     this.el.nativeElement.value = formattedInput;
+
+    const newCaretPosition = this.calculateNewCaretPosition(formattedInput, caretPosition);
+    this.el.nativeElement.setSelectionRange(newCaretPosition, newCaretPosition);
+
     this.previousValue = formattedInput;
   }
 
@@ -36,8 +41,8 @@ export class PhoneFormatterDirective {
     const part1 = value.substring(0, 3); 
     const part2 = value.substring(3, 5); 
     const part3 = value.substring(5, 8); 
-    const part4 = value.substring(8, 10); 
-    const part5 = value.substring(10, 12); 
+    const part4 = value.substring(8, 10);
+    const part5 = value.substring(10, 12);
 
     let formatted = '+' + part1;
     if (part2) {
@@ -54,5 +59,11 @@ export class PhoneFormatterDirective {
     }
 
     return formatted;
+  }
+
+  private calculateNewCaretPosition(formattedInput: string, caretPosition: number): number {
+    const nonDigitCharacters = formattedInput.substring(0, caretPosition).replace(/\d/g, '').length;
+
+    return caretPosition + nonDigitCharacters;
   }
 }

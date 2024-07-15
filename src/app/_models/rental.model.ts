@@ -3,6 +3,7 @@ export interface Rental {
     car: CarInfo;
     startDate: Date;
     expectedReturnDate: Date;
+    actualReturnDate: Date;
     finalRentalCost: number;
     status: string;
     discount: number;

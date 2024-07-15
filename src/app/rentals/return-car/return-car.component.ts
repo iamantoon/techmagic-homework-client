@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RentalService } from '../../_services/rental.service';
-import { Rental } from '../../_models/rental.model';
 import { ReturnCarItemComponent } from '../return-car-item/return-car-item.component';
 import { NgFor } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-return-car',
   standalone: true,
-  imports: [ReturnCarItemComponent, NgFor],
+  imports: [ReturnCarItemComponent, NgFor, RouterLink],
   templateUrl: './return-car.component.html',
   styleUrl: './return-car.component.scss'
 })

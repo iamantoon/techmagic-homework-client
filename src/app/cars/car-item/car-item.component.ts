@@ -20,7 +20,10 @@ export class CarItemComponent {
   bsModalRef: BsModalRef<RentCarModalComponent> = new BsModalRef<RentCarModalComponent>();
 
   openRentCarModal(){
-    if (!this.authService.currentUser()) this.router.navigate(['/login']);
+    if (!this.authService.currentUser()) {
+      this.router.navigate(['/login']);
+      return;
+    }
     const initialState: ModalOptions = {
       class: 'modal-lg',
       initialState: {

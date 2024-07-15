@@ -5,25 +5,19 @@
             <li class="nav-item custom-margin">
                 <a routerLink="/cars" routerLinkActive="active" class="nav-link position-relative">
                     Cars
-                    <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
-                        9
-                    </span>
                 </a>
             </li>
             @if (authService.currentUser()) {
                 <li class="nav-item custom-margin">
                     <a routerLink="/rentals" routerLinkActive="active" class="nav-link position-relative">
                         My rents
-                        <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
-                            4
-                        </span>
                     </a>
                 </li>
                 <li class="nav-item custom-margin">
                     <a routerLink="/rentals/return-car" routerLinkActive="active" class="nav-link position-relative">
                         Return car
                         <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
-                            1
+                            2
                         </span>
                     </a>
                 </li>
@@ -32,10 +26,9 @@
         @if (authService.currentUser()) {
             <div class="dropdown" dropdown>
                 <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
-                    Welcome {{authService.currentUser()!.firstName | titlecase}}
+                    {{authService.currentUser()!.firstName | titlecase}} {{authService.currentUser()!.lastName | titlecase}}
                 </a>
                 <div *dropdownMenu class="dropdown-menu">
-                    <a class="dropdown-item">Account</a>
                     <a class="dropdown-item" (click)="logout()">Logout</a>
                 </div>
             </div>

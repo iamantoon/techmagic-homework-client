@@ -1,5 +1,9 @@
-<div class="row align-items-md-stretch">
-    <div *ngFor="let rental of rentalService.activeRentals(); trackBy: trackByFn" class="mb-3">
-      <app-return-car-item [rental]="rental"></app-return-car-item>
+<div class="row">
+    @if (rentalService.activeRentals().length === 0) {
+        <h5>You have not rented any cars recently</h5>
+        <p>But you can always pick a car you want <a routerLink="/cars">here</a></p>
+    }
+    <div *ngFor="let rental of rentalService.activeRentals(); trackBy: trackByFn" class="col-12 col-md-6 col-lg-4 mb-3">
+        <app-return-car-item [rental]="rental"></app-return-car-item>
     </div>
 </div>

@@ -1,13 +1,13 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off" class="container mt-4" style="max-width: 500px;">
     <h2 class="text-center text-primary">Login</h2>
-    <app-text-input [formControl]="$any(loginForm.controls['phone'])" [label]="'Phone'" appPhoneFormatter></app-text-input>
+    <app-text-input [formControl]="$any(loginForm.controls['phone'])" [label]="'Phone'"></app-text-input>
     <app-text-input [formControl]="$any(loginForm.controls['password'])" [label]="'Password'" [type]="'password'"></app-text-input>
     <div class="form-group text-center mt-3">
         <button 
             class="btn btn-success w-100 me-2" 
             type="submit" 
-            [disabled]="loginForm.disabled"
-            [class.disabled]="loginForm.disabled"
+            [disabled]="!loginForm.valid"
+            [class.disabled]="!loginForm.valid"
         >Login</button>
     </div>
     <p class="text-muted text-center mt-3">Don't have an account? <a class="link-opacity-100" routerLink="/register">Register</a></p>

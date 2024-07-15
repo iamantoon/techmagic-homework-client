@@ -1,17 +1,17 @@
 @if (car) {
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <img [src]="car.photoUrl" [alt]="car.brand" class="w-100">
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 mb-4 mb-md-0">
+                <img [src]="car.photoUrl" [alt]="car.brand" class="img-fluid rounded shadow-sm">
             </div>
-            <div class="col-md-6 mt-5">
-                <h2>{{car.brand}} {{car.carModel}}</h2>
-                <p style="font-size: 1.2em;">{{car.rentCost}}$ per hour</p>
-                <p style="font-size: 1em;">Cost: {{car.cost}}$</p>
-                <p style="font-size: 1em;">Manufacture Year: {{car.year}}</p>
-                <p>Type: {{car.type}}</p>
-                <div class="row mt-3">
-                    <button class="btn btn-primary" (click)="openRentCarModal()">Rent car</button>
+            <div class="col-12 col-md-6">
+                <h2 class="display-4">{{car.brand}} {{car.carModel}}</h2>
+                <p class="h4 text-muted">{{car.rentCost}}$ per hour</p>
+                <p class="h5">Cost: {{car.cost}}$</p>
+                <p class="h5">Manufacture Year: {{car.year}}</p>
+                <p class="h5">Type: {{car.type}}</p>
+                <div class="row mt-4">
+                    <button class="btn btn-primary btn-lg" (click)="openRentCarModal()">Rent car</button>
                 </div>
             </div>
         </div>

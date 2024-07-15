@@ -11,7 +11,7 @@
         *ngIf="control.hasError('required')" 
         class="invalid-feedback text-start"
     >
-        Please enter a {{label() | lowercase}}
+        Please enter {{label() | lowercase}}
     </div>
     <div 
         *ngIf="control.hasError('minlength')" 

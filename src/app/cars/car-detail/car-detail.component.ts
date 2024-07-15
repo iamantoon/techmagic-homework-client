@@ -32,7 +32,10 @@ export class CarDetailComponent implements OnInit {
   }
 
   openRentCarModal(){
-    if (!this.authService.currentUser()) this.router.navigate(['/login']);
+    if (!this.authService.currentUser()) {
+      this.router.navigate(['/login']);
+      return;
+    }
     if (this.car){
       const initialState: ModalOptions = {
         class: 'modal-lg',

@@ -1,0 +1,11 @@
+.card {
+    img {
+        object-fit: cover;
+    }
+    
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

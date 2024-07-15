@@ -6,15 +6,15 @@
     <app-text-input [formControl]="$any(registerForm.controls['country'])" [label]="'Country'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['city'])" [label]="'City'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['address'])" [label]="'Address'"></app-text-input>
-    <app-text-input [formControl]="$any(registerForm.controls['phone'])" [label]="'Phone'" appPhoneFormatter></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['phone'])" [label]="'Phone'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Password'" [type]="'password'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirm password'" [type]="'password'"></app-text-input>
     <div class="form-group text-center mt-3">
         <button 
             class="btn btn-success w-100 me-2" 
             type="submit" 
-            [disabled]="registerForm.disabled"
-            [class.disabled]="registerForm.disabled"
+            [disabled]="!registerForm.valid"
+            [class.disabled]="!registerForm.valid"
         >Register</button>
     </div>
     <p class="text-muted text-center mt-3">Already have an account? <a class="link-opacity-100" routerLink="/login">Login</a></p>

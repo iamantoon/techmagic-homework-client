@@ -1,53 +1,56 @@
-@if (returnedCars.length === 0){
+@if (returnedCars.length === 0) {
     <h5>You have no rental history yet</h5>
     <p>You can pick any car you like <a routerLink="/cars">here</a></p>
 }
-@if (returnedCars.length > 0){
-    <table class="table caption-top">    
-        <thead>
-            <tr>
-                <th scope="col">Car</th>
-                <th scope="col">Start date</th>
-                <th scope="col">Return date</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Status</th>
-                <th scope="col">Discount</th>
-                <th scope="col">Penalty</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (rental of returnedCars; track $index) {
+@if (returnedCars.length > 0) {
+    <h5>Here you can see the cars you rented and already returned</h5>
+    <div class="table-responsive">
+        <table class="table caption-top">    
+            <thead>
                 <tr>
-                    <td>{{rental.car.brand}} {{rental.car.carModel}}</td>
-                    <td>{{rental.startDate | date: 'longDate'}}</td>
-                    <td>{{rental.expectedReturnDate | date: 'longDate'}}</td>
-                    <td>{{rental.finalRentalCost}}$</td>
-                    <td>
-                        @if (rental.status === 'returned') {
-                            <span class="badge text-bg-success">{{rental.status | titlecase}}</span>
-                        } 
-                        @if (rental.status === 'active') {
-                            <span class="badge text-bg-danger">{{rental.status | titlecase}}</span>
-                        }
-                    </td>
-                    <td>
-                        @if (rental.discount) {
-                            <span class="badge text-bg-success">{{rental.discount}}$</span>
-                        } 
-                        @if (!rental.discount) {
-                            <span class="badge text-bg-danger">Absent</span>
-                        }
-                    </td>
-                    <td>
-                        @if (rental.penalty) {
-                            <span class="badge text-bg-danger">{{rental.penalty}}$</span>
-                        } 
-                        @if (!rental.penalty) {
-                            <span class="badge text-bg-success">Absent</span>
-                        }
-                    </td>
+                    <th scope="col">Car</th>
+                    <th scope="col">Start date</th>
+                    <th scope="col">Return date</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Penalty</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @for (rental of returnedCars; track $index) {
+                    <tr>
+                        <td>{{rental.car.brand}} {{rental.car.carModel}}</td>
+                        <td>{{rental.startDate | date: 'longDate'}}</td>
+                        <td>{{rental.actualReturnDate | date: 'longDate'}}</td>
+                        <td>${{rental.finalRentalCost}}</td>
+                        <td>
+                            @if (rental.status === 'returned') {
+                                <span class="badge text-bg-success">{{rental.status | titlecase}}</span>
+                            } 
+                            @if (rental.status === 'active') {
+                                <span class="badge text-bg-danger">{{rental.status | titlecase}}</span>
+                            }
+                        </td>
+                        <td>
+                            @if (rental.discount) {
+                                <span class="badge text-bg-success">${{rental.discount}}</span>
+                            } 
+                            @if (!rental.discount) {
+                                <span class="badge text-bg-danger">$0</span>
+                            }
+                        </td>
+                        <td>
+                            @if (rental.penalty) {
+                                <span class="badge text-bg-danger">${{rental.penalty}}</span>
+                            } 
+                            @if (!rental.penalty) {
+                                <span class="badge text-bg-success">Absent</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
