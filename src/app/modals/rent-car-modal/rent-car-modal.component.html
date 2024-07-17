@@ -4,7 +4,7 @@
         <p class="text-secondary info">Prices vary based on rental length and car type. Penalties apply for damage or late returns. Note: No refunds for early returns.</p>
     </div>
     <div class="d-flex flex-start">
-        <img ngSrc="{{photoUrl}}" alt="{{brand}}" width="250" height="150">
+        <img ngSrc="{{photoUrl}}" alt="{{brand}}" width="250" height="140" priority>
         <div class="d-flex flex-column car-info">
             <h4 class="car-name">{{brand}} {{model}}</h4>
             <p class="car-description">{{year}}</p>
@@ -30,7 +30,7 @@
             ></app-date-picker>
         </div>
     </div>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between" style="margin-top: 10px;">
         <div class="d-flex flex-column">
             <h4 class="modal-title pull-left">Rental Summary</h4>
             <p class="text-secondary info">Overall price</p>

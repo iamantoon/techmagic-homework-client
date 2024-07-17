@@ -53,8 +53,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
   register(){
     if (this.registerForm.valid) {
       const formValue: Register = this.registerForm.value;
-      this.authService.login(formValue).subscribe({
-        next: _ => this.router.navigate(['/']),
+      this.authService.register(formValue).subscribe({
+        next: _ => {
+          this.toastr.success('You have successfully registered');
+          this.router.navigate(['/']);
+        },
         error: err => this.toastr.error(err)
       });
     } 

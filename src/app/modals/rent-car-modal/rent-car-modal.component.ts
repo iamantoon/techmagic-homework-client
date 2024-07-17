@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { CarService } from '../../_services/car.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgOptimizedImage } from '@angular/common'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rent-car-modal',
@@ -20,6 +21,7 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
   private carService = inject(CarService);
   private toastr = inject(ToastrService);
+  private router = inject(Router);
   private fb = inject(FormBuilder);
   public rentForm: FormGroup = new FormGroup({});
   public minDate?: Date;
@@ -75,6 +77,7 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
       this.carService.rentCar(requestBody).subscribe(_ => {
         this.carService.cars.update(value => value.filter(c => c._id !== this.id));
         this.toastr.success('Car rented successfully');
+        this.router.navigate(['/cars']);
         this.bsModalRef.hide();
       });
     }

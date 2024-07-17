@@ -8,7 +8,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   if (authService.currentUser()){
     req = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${authService.currentUser()?.jwt}`
+        Authorization: `Bearer ${authService.currentUser()!.jwt}`
       }
     })
   }

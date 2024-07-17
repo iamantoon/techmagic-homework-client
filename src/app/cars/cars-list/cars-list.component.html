@@ -3,3 +3,8 @@
         <app-car-item [car]="car"></app-car-item>
     }
 </div>
+@if (carService.cars().length === 0) {
+    <h5 class="text-info">We regret to inform you that all our rental cars are currently unavailable as they have been rented out by other clients.</h5>
+    <p class="text-info">Please check back later as cars may become available again soon.</p>
+    <p class="text-dark">Thank you for your understanding and patience.</p>
+}

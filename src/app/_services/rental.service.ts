@@ -19,6 +19,6 @@ export class RentalService {
   getActiveRentals(){
     return this.http.get<Rental[]>(this.baseUrl + 'active').subscribe({
       next: response => this.activeRentals.set(response)
-    })
+    });
   }
 }

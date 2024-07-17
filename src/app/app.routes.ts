@@ -8,18 +8,18 @@ import { ReturnCarComponent } from './rentals/return-car/return-car.component';
 import { authGuard } from './_guards/auth.guard';
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'cars', component: CarsListComponent },
-    { path: 'cars/:id', component: CarDetailComponent },
+    { path: 'login', title: 'Login', component: LoginComponent },
+    { path: 'register', title: 'Register', component: RegisterComponent },
+    { path: 'cars/:id', title: 'Cars', component: CarDetailComponent },
+    { path: 'cars', title: 'Cars', component: CarsListComponent },
     { path: '', redirectTo: 'cars', pathMatch: 'full' },
     {
         path: '',
         runGuardsAndResolvers: 'always',
         canActivate: [authGuard],
         children: [
-            { path: 'rentals', component: RentalsComponent },
-            { path: 'rentals/return-car', component: ReturnCarComponent }
+            { path: 'rentals', title: 'Closed rents', component: RentalsComponent },
+            { path: 'rentals/active', title: 'Active rents', component: ReturnCarComponent }
         ]
     },
     { path: '**', redirectTo: 'cars', pathMatch: 'full' }

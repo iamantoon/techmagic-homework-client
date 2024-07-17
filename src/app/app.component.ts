@@ -4,11 +4,11 @@ import { NavComponent } from "./nav/nav.component";
 import { AuthService } from './_services/auth.service';
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
-    imports: [RouterOutlet, NavComponent]
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  imports: [RouterOutlet, NavComponent]
 })
 export class AppComponent implements OnInit {
   private authService = inject(AuthService);
