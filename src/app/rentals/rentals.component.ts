@@ -20,4 +20,8 @@ export class RentalsComponent implements OnInit {
       next: response => this.returnedCars = response
     });
   }
+
+  currencyFormatter(penalty: number): string {
+    return penalty.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  }
 }

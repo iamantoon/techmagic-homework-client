@@ -6,8 +6,17 @@
             </div>
             <div class="col-12 col-md-6">
                 <h2 class="display-4">{{car.brand}} {{car.carModel}}</h2>
-                <p class="h4 text-muted">{{car.rentCost}}$ per hour</p>
-                <p class="h5">Cost: {{car.cost}}$</p>
+                <p class="h4 text-muted">
+                    @if (car.discount) {
+                        <span class="text-decoration-line-through">{{currencyFormatter(car.rentCost + car.discount)}}</span>
+                        <span class="text-primary ms-2">{{currencyFormatter(car.rentCost)}} per day</span>
+                        <br>
+                        <small class="text-success">You save {{currencyFormatter(car.discount)}} per day!</small>
+                    } @else {
+                        {{currencyFormatter(car.rentCost)}} per day
+                    }
+                </p>
+                <p class="h5">Cost: {{currencyFormatter(car.cost)}}</p>
                 <p class="h5">Manufacture Year: {{car.year}}</p>
                 <p class="h5">Type: {{car.type}}</p>
                 <div class="row mt-4">

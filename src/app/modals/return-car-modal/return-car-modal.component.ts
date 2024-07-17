@@ -68,18 +68,19 @@ export class ReturnCarModalComponent implements OnInit {
   }
 
   calculateDamagePenalty(){
-    return this.rentalForm.controls['carDamaged'].value === 'Yes' ? 200 : 0;
+    return this.rentalForm.controls['carDamaged'].value === 'Yes' ? this.currencyFormatter(200) : this.currencyFormatter(0);
   }
 
-  calculateLateReturnPenalty(): number {
+  calculateLateReturnPenalty(): string {
     if (this.actualReturnDate > this.expectedReturnDate) {
 			const lateDays = (this.actualReturnDate.getTime() - this.expectedReturnDate.getTime()) / (1000 * 3600 * 24);
-			return lateDays * 50;
+      const formattedPenalty = this.currencyFormatter(lateDays * 50);
+			return formattedPenalty;
 		}
-    return 0;
+    return this.currencyFormatter(0);
   }
 
-  calculateTotalPenalty(): number {
+  calculateTotalPenalty(): string {
 		let penalty = 0;
 		if (this.actualReturnDate > this.expectedReturnDate) {
 			const lateDays = (this.actualReturnDate.getTime() - this.expectedReturnDate.getTime()) / (1000 * 3600 * 24);
@@ -87,6 +88,12 @@ export class ReturnCarModalComponent implements OnInit {
 		}
 		if (this.rentalForm.controls['carDamaged'].value === 'Yes') penalty += 200;
 
-		return penalty;
+    const formattedPenalty = this.currencyFormatter(penalty);
+
+		return formattedPenalty;
 	}
+
+  private currencyFormatter(penalty: number): string {
+    return penalty.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  }
 }

@@ -7,11 +7,11 @@
             </li>
             @if (authService.currentUser()) {
                 <li class="nav-item custom-margin">
-                    <a routerLink="/rentals" routerLinkActive="active" class="nav-link position-relative">My rents</a>
+                    <a routerLink="/rentals" routerLinkActive="active" class="nav-link position-relative">Closed rents</a>
                 </li>
                 <li class="nav-item custom-margin">
                     <a routerLink="/rentals/return-car" routerLinkActive="active" class="nav-link position-relative">
-                        Return car
+                        Active rents
                         <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
                             2
                         </span>
@@ -30,7 +30,7 @@
             </div>
         }
         @if (!authService.currentUser()) {
-            <button class="btn btn-outline-dark" routerLink="/login">Login</button>
+            <button class="btn btn-outline-light" routerLink="/login">Login</button>
         }
     </div>
 </nav>

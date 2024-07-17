@@ -1,23 +1,28 @@
-<div class="modal-header">
-    <h4 class="modal-title pull-left">Rent {{brand}} {{model}}</h4>
-    <button type="button" class="btn-close close pull-right" (click)="bsModalRef.hide()">
-        <span class="visually-hidden">&times;</span>
-    </button>
-</div>
 <div class="modal-body">
-    <div class="row">
-        <div class="col-md-6 mt-1">
-            <p><strong>Car</strong></p>
-            <p><strong>Year</strong></p>
-            <p><strong>Type</strong></p>
-            <p><strong>Cost</strong></p>
-            <p><strong>When are you going to return car?</strong></p>
+    <div class="d-flex flex-column">
+        <h4 class="modal-title pull-left">Rental Summary</h4>
+        <p class="text-secondary info">Prices vary based on rental length and car type. Penalties apply for damage or late returns. Note: No refunds for early returns.</p>
+    </div>
+    <div class="d-flex flex-start">
+        <img ngSrc="{{photoUrl}}" alt="{{brand}}" width="250" height="150">
+        <div class="d-flex flex-column car-info">
+            <h4 class="car-name">{{brand}} {{model}}</h4>
+            <p class="car-description">{{year}}</p>
+            <p class="car-description">{{type}}</p>
         </div>
-        <div class="col-md-6 mt-1">
-            <p>{{brand}} {{model}}</p>
-            <p>{{year}}</p>
-            <p>{{type}}</p>
-            <p>{{totalRentCost === 0 ? rentCost : totalRentCost}}$</p>
+    </div>
+    <hr>
+    <div>
+        <div class="d-flex justify-content-between">
+            <h6 class="text-secondary">Subtotal</h6>
+            <h6 class="text-dark">{{totalRentCost === 0 ? currencyFormatter(rentCost) : currencyFormatter(totalRentCost)}}</h6>
+        </div>
+        <div class="d-flex justify-content-between">
+            <h6 class="text-secondary">Discount (per day)</h6>
+            <h6 class="text-dark">{{currencyFormatter(discount)}}</h6>
+        </div>
+        <div class="d-flex justify-content-between">
+            <h6 class="text-secondary">Return date</h6>
             <app-date-picker
                 [formControl]="$any(rentForm.controls['date'])" 
                 [label]="'Select date'" 
@@ -25,8 +30,17 @@
             ></app-date-picker>
         </div>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="rent()">Rent</button>
-    <button type="button" class="btn btn-outline-primary" (click)="bsModalRef.hide()">Close</button>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column">
+            <h4 class="modal-title pull-left">Rental Summary</h4>
+            <p class="text-secondary info">Overall price</p>
+        </div>
+        <div>
+            <h3>{{totalRentCost === 0 ? currencyFormatter(rentCost) : currencyFormatter(totalRentCost)}}</h3>
+        </div>
+    </div>
+    <div class="buttons">
+        <button type="button" class="btn btn-outline-primary" (click)="bsModalRef.hide()">Close</button>
+        <button type="button" class="btn btn-success" (click)="rent()">Rent</button>
+    </div>
 </div>

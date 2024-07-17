@@ -1,30 +1,27 @@
-<!-- <div class="col">
-    <div class="card shadow-sm">
-        <img src="{{car().photoUrl}}" alt="car" width="100%" height="225" class="bd-placeholder-img card-img-top">
-        <div class="card-body">
-            <h6 class="card-text">{{car().brand}} {{car().carModel}}</h6>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="['/cars', car()._id]">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="openRentCarModal()">Rent</button>
-                </div>
-                <small class="text-body-primary">{{car().rentCost}}$ per day</small>
-            </div>
-        </div>
-    </div>
-</div> -->
-
 <div class="col">
     <div class="card shadow-sm h-100">
         <img src="{{car().photoUrl}}" alt="car" width="100%" height="225" class="bd-placeholder-img card-img-top">
         <div class="card-body d-flex flex-column">
-            <h6 class="card-text">{{car().brand}} {{car().carModel}}</h6>
             <div class="d-flex justify-content-between align-items-center mt-auto">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="['/cars', car()._id]">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="openRentCarModal()">Rent</button>
+                <div>
+                    <h6 class="card-text">{{car().brand}} {{car().carModel}}</h6>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="['/cars', car()._id]">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="openRentCarModal()">Rent</button>
+                    </div>
                 </div>
-                <small class="text-body-primary">{{car().rentCost}}$ per day</small>
+                @if (car().discount) {
+                    <div class="d-flex flex-column text-center">
+                        <small class="text-body-primary initial-price">{{calculateInitialPrice(car().rentCost, car().discount!)}}/day</small>
+                        <small class="text-body-primary discount">{{currencyFormatter(car().rentCost)}}/day</small>
+                    </div>
+                }
+                @if (!car().discount) {
+                    <div class="d-flex flex-column text-center">
+                        <small class="text-body-primary hidden">{{calculateInitialPrice(car().rentCost, car().discount!)}}/day</small>
+                        <small class="text-body-primary">{{currencyFormatter(car().rentCost)}}/day</small>
+                    </div> 
+                }
             </div>
         </div>
     </div>

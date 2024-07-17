@@ -7,11 +7,12 @@ import { DatePickerComponent } from '../../_forms/date-picker/date-picker.compon
 import { Subscription } from 'rxjs';
 import { CarService } from '../../_services/car.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgOptimizedImage } from '@angular/common'
 
 @Component({
   selector: 'app-rent-car-modal',
   standalone: true,
-  imports: [ReactiveFormsModule, DatePickerComponent],
+  imports: [ReactiveFormsModule, DatePickerComponent, NgOptimizedImage],
   templateUrl: './rent-car-modal.component.html',
   styleUrl: './rent-car-modal.component.scss'
 })
@@ -28,6 +29,8 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
   rentCost: number = 0;
   type: string = '';
   year: number = 0;
+  photoUrl!: string;
+  discount: number = 0;
   model: string = '';
   rentDays: number = 1;
   totalRentCost: number = 0;
@@ -82,6 +85,10 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
     this.minDate = tomorrow;
+  }
+
+  currencyFormatter(penalty: number): string {
+    return penalty.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   }
 
   ngOnDestroy(): void {

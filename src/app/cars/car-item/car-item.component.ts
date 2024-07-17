@@ -25,16 +25,26 @@ export class CarItemComponent {
       return;
     }
     const initialState: ModalOptions = {
-      class: 'modal-lg',
+      class: 'modal-md',
       initialState: {
         id: this.car()._id,
         brand: this.car().brand,
         model: this.car().carModel,
         rentCost: this.car().rentCost,
+        photoUrl: this.car().photoUrl,
+        discount: this.car().discount,
         type: this.car().type,
         year: this.car().year
       }
     }
     this.bsModalRef = this.modalService.show(RentCarModalComponent, initialState);
+  }
+
+  calculateInitialPrice(initialRentCost: number, discount: number): string {
+    return this.currencyFormatter(initialRentCost + discount);
+  }
+
+  currencyFormatter(penalty: number): string {
+    return penalty.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   }
 }
