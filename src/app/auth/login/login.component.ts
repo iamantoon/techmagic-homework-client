@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       const formValue = this.loginForm.value;
       this.authService.login(formValue).subscribe({
         next: _ => this.router.navigate(['/']),
-        error: _ => this.toastr.error('Invalid data')
+        error: _ => this.toastr.error('Invalid data or user does not exist')
       });
     } 
   }

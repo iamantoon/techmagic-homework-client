@@ -21,8 +21,8 @@ export class CarService {
     return this.http.get<Car>(this.baseUrl + id);
   }
 
-  rentCar(requestBody: RentCar) {
-    return this.http.post(this.baseUrl + requestBody.carId + '/rent', requestBody);
+  rentCar(carId: string, requestBody: RentCar) {
+    return this.http.post(this.baseUrl + carId + '/rent', requestBody);
   }
 
   returnCar(requestBody: ReturnCar){

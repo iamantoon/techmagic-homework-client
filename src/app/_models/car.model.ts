@@ -11,7 +11,6 @@ export interface Car {
 } 
 
 export interface RentCar {
-    carId: string;
     userId: string;
     expectedReturnDate: number;
 }
