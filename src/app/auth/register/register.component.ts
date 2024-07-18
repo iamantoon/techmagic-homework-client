@@ -3,7 +3,6 @@ import { TextInputComponent } from '../../_forms/text-input/text-input.component
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { PhoneFormatterDirective } from '../../_directives/phone-formatter.directive';
 import { AuthService } from '../../_services/auth.service';
 import { Register } from '../../_models/auth.model';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, TextInputComponent, RouterLink, PhoneFormatterDirective],
+  imports: [ReactiveFormsModule, TextInputComponent, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

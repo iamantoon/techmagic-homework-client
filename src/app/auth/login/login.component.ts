@@ -2,14 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TextInputComponent } from '../../_forms/text-input/text-input.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { PhoneFormatterDirective } from '../../_directives/phone-formatter.directive';
 import { AuthService } from '../../_services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, TextInputComponent, RouterLink, PhoneFormatterDirective],
+  imports: [ReactiveFormsModule, TextInputComponent, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
