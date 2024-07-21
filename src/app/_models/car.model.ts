@@ -17,7 +17,6 @@ export interface RentCar {
 
 export interface ReturnCar {
     rentalId: string;
-    carId: string;
     userId: string;
     isDamaged: boolean;
 }

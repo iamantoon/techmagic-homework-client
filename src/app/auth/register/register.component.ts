@@ -6,11 +6,13 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
 import { Register } from '../../_models/auth.model';
 import { ToastrService } from 'ngx-toastr';
+import { RadioButtonComponent } from '../../_forms/radio-button/radio-button.component';
+import { DatePickerComponent } from '../../_forms/date-picker/date-picker.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, TextInputComponent, RouterLink],
+  imports: [ReactiveFormsModule, TextInputComponent, RouterLink, DatePickerComponent, RadioButtonComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

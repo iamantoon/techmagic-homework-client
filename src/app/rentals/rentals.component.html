@@ -36,7 +36,7 @@
                                 <span class="badge text-bg-danger">{{currencyFormatter(rental.penalty)}}</span>
                             } 
                             @if (!rental.penalty) {
-                                <span class="badge text-bg-success">Absent</span>
+                                <span class="badge text-bg-success">{{currencyFormatter(0)}}</span>
                             }
                         </td>
                     </tr>

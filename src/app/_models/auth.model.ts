@@ -7,6 +7,8 @@ export interface Register {
     firstName: string;
     lastName: string;
     patronymic: string;
+    dateOfBirth: Date;
+    gender: 'male' | 'female';
     country: string;
     city: string;
     address: string;

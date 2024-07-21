@@ -51,10 +51,9 @@ export class ReturnCarModalComponent implements OnInit {
     const requestBody: ReturnCar = {
       rentalId: this.rentalId,
       userId: this.authService.currentUser()!.id,
-      carId: this.carId,
       isDamaged: this.rentalForm.controls['carDamaged'].value === 'Yes' ? true : false
     };
-    this.carService.returnCar(requestBody).subscribe({
+    this.carService.returnCar(this.carId, requestBody).subscribe({
       next: _ => {
         this.toastr.success('Car returned successfully');
         this.rentalService.activeRentals.update(value => value.filter(r => r._id !== this.rentalId));

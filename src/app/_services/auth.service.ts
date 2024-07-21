@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { User } from '../_models/user.model';
+import { AccountInfo, User } from '../_models/user.model';
 import { map } from 'rxjs';
 import { Login, Register } from '../_models/auth.model';
 import { environment } from '../../environments/environment';
@@ -30,6 +30,10 @@ export class AuthService {
         return user;
       })
     )
+  }
+
+  getAccountInfo(id: string){
+    return this.http.get<AccountInfo>(this.baseUrl + 'account/' + id);
   }
 
   setCurrentUser(user: User){

@@ -24,6 +24,7 @@
                         {{authService.currentUser()!.firstName | titlecase}} {{authService.currentUser()!.lastName | titlecase}}
                     </a>
                     <div *dropdownMenu class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" routerLink="/account">Account</a>
                         <a class="dropdown-item" (click)="logout()">Logout</a>
                     </div>
                 </div>
