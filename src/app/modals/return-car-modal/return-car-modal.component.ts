@@ -52,7 +52,7 @@ export class ReturnCarModalComponent implements OnInit {
       rentalId: this.rentalId,
       isDamaged: this.rentalForm.controls['carDamaged'].value === 'Yes' ? true : false
     };
-    this.carService.returnCar(this.carId, requestBody).subscribe({
+    this.carService.returnCar(requestBody).subscribe({
       next: _ => {
         this.toastr.success('Car returned successfully');
         this.rentalService.activeRentals.update(value => value.filter(r => r._id !== this.rentalId));
