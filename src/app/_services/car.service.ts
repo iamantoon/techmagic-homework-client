@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Car, RentCar, ReturnCar } from '../_models/car.model';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

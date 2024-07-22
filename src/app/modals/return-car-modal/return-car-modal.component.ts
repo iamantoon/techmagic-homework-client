@@ -50,7 +50,6 @@ export class ReturnCarModalComponent implements OnInit {
   returnCar(){
     const requestBody: ReturnCar = {
       rentalId: this.rentalId,
-      userId: this.authService.currentUser()!.id,
       isDamaged: this.rentalForm.controls['carDamaged'].value === 'Yes' ? true : false
     };
     this.carService.returnCar(this.carId, requestBody).subscribe({

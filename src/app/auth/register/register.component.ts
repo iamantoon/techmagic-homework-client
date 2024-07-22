@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           this.toastr.success('You have successfully registered');
           this.router.navigate(['/']);
         },
-        error: err => this.toastr.error(err)
+        error: _ => this.toastr.error('Invalid data or user already exists')
       });
     } 
   }

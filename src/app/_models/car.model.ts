@@ -11,12 +11,10 @@ export interface Car {
 } 
 
 export interface RentCar {
-    userId: string;
     expectedReturnDate: number;
 }
 
 export interface ReturnCar {
     rentalId: string;
-    userId: string;
     isDamaged: boolean;
 }

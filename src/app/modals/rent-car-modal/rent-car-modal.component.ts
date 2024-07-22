@@ -70,7 +70,6 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
   rent(): void {
     if (this.id && this.authService.currentUser()){
       const requestBody: RentCar = {
-        userId: this.authService.currentUser()!.id,
         expectedReturnDate: this.rentForm.controls['date'].value
       }
       this.carService.rentCar(this.id, requestBody).subscribe(_ => {

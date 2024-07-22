@@ -3,14 +3,12 @@ import { inject, Injectable, signal } from '@angular/core';
 import { AccountInfo, User } from '../_models/user.model';
 import { map } from 'rxjs';
 import { Login, Register } from '../_models/auth.model';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private http = inject(HttpClient); 
-  // private baseUrl = environment.apiUrl + 'auth/';
   private baseUrl = 'http://localhost:5000/auth/'
   currentUser = signal<User | null>(null);
 
@@ -32,8 +30,8 @@ export class AuthService {
     )
   }
 
-  getAccountInfo(id: string){
-    return this.http.get<AccountInfo>(this.baseUrl + 'account/' + id);
+  getAccountInfo(){
+    return this.http.get<AccountInfo>(this.baseUrl + 'account');
   }
 
   setCurrentUser(user: User){

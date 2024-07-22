@@ -15,7 +15,7 @@ export class AccountComponent implements OnInit {
   public accountInfo?: AccountInfo;
 
   ngOnInit(): void {
-    this.authService.getAccountInfo(this.authService.currentUser()!.id).subscribe({
+    this.authService.getAccountInfo().subscribe({
       next: response => this.accountInfo = response
     });
   }
