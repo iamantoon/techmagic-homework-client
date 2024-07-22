@@ -1,7 +1,7 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off" class="container mt-4" style="max-width: 500px;">
     <h2 class="text-center text-primary mb-4">Sign up</h2>
-    <app-text-input [formControl]="$any(registerForm.controls['firstName'])" [label]="'First name'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['lastName'])" [label]="'Last name'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['firstName'])" [label]="'First name'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['patronymic'])" [label]="'Patronymic'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['country'])" [label]="'Country'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['city'])" [label]="'City'"></app-text-input>
