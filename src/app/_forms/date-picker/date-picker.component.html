@@ -2,17 +2,17 @@
     <input
         [formControl]="control"
         [class.is-invalid]="control.touched && control.invalid"
-        class="form-control form-control-sm custom"
+        class="form-control form-control-sm custom-width"
         placeholder={{label()}}
         bsDatepicker
         [bsConfig]="bsConfig"
         [minDate]="minDate()"
         placement="top"
     >
-    <div 
+    <div
         *ngIf="control.hasError('required')" 
         class="invalid-feedback text-start"
     >
-        Please select a date
+        Select a date
     </div>
 </div>
