@@ -1,9 +1,5 @@
-@if (returnedCars.length === 0) {
-    <h5>You have no rental history yet</h5>
-    <p>You can pick any car you like <a routerLink="/cars">here</a></p>
-}
 @if (returnedCars.length > 0) {
-    <h5>Here you can see the cars you rented and already returned</h5>
+    <h5>Here you can see a list of cars you have already returned</h5>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -26,16 +22,14 @@
                         <td class="text-center align-middle">
                             @if (rental.discount) {
                                 <span class="badge text-bg-success">{{currencyFormatter(rental.discount)}}</span>
-                            } 
-                            @if (!rental.discount) {
+                            } @else () {
                                 <span class="badge text-bg-danger">{{currencyFormatter(0)}}</span>
                             }
                         </td>
                         <td class="text-center align-middle">
                             @if (rental.penalty) {
                                 <span class="badge text-bg-danger">{{currencyFormatter(rental.penalty)}}</span>
-                            } 
-                            @if (!rental.penalty) {
+                            } @else {
                                 <span class="badge text-bg-success">{{currencyFormatter(0)}}</span>
                             }
                         </td>
@@ -44,4 +38,7 @@
             </tbody>
         </table>        
     </div>
+} @else {
+    <h5>You have no rental history yet</h5>
+    <p>You can pick any car you like <a routerLink="/cars">here</a></p>
 }

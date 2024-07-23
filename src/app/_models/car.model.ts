@@ -5,9 +5,9 @@ export interface Car {
     year: number;
     type: string;
     cost: number;
-    discount?: number;
     rentCost: number;
     photoUrl?: string;
+    discount?: number;
 } 
 
 export interface RentCar {

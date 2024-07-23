@@ -15,8 +15,7 @@
                         <small class="text-body-primary initial-price">{{calculateInitialPrice(car().rentCost, car().discount!)}}/day</small>
                         <small class="text-body-primary discount">{{currencyFormatter(car().rentCost)}}/day</small>
                     </div>
-                }
-                @if (!car().discount) {
+                } @else {
                     <div class="d-flex flex-column text-center">
                         <small class="text-body-primary hidden">{{calculateInitialPrice(car().rentCost, car().discount!)}}/day</small>
                         <small class="text-body-primary">{{currencyFormatter(car().rentCost)}}/day</small>

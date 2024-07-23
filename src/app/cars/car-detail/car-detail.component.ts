@@ -36,7 +36,7 @@ export class CarDetailComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    if (this.car){
+    if (this.car) {
       const initialState: ModalOptions = {
         class: 'modal-md',
         initialState: {
