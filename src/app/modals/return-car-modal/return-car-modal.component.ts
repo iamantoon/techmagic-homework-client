@@ -9,6 +9,8 @@ import { AuthService } from '../../_services/auth.service';
 import { RadioButtonComponent } from '../../_forms/radio-button/radio-button.component';
 import { ToastrService } from 'ngx-toastr';
 import { RentalService } from '../../_services/rental.service';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-return-car-modal',
@@ -35,10 +37,39 @@ export class ReturnCarModalComponent implements OnInit {
   discount?: number;
   expectedReturnDate!: Date;
   actualReturnDate!: Date;
+  returnSubject = new Subject<void>();
+  isLoading = false;
 
   ngOnInit(): void {
     this.initializeForm();
     this.actualReturnDate = new Date();
+    this.returnSubject.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => this.isLoading = true),
+      switchMap(() => {
+        if (this.rentalId) {
+          const requestBody: ReturnCar = {
+            rentalId: this.rentalId,
+            isDamaged: this.rentalForm.controls['carDamaged'].value === 'Yes'
+          };
+          return this.carService.returnCar(requestBody);
+        }
+        return [];
+      })
+    ).subscribe({
+      next: _ => {
+        this.toastr.success('Car returned successfully');
+        this.rentalService.activeRentals.update(value => value.filter(r => r._id !== this.rentalId));
+        this.bsModalRef.hide();
+        this.isLoading = false;
+      },
+      error: err => {
+        this.toastr.error('Something went wrong');
+        this.bsModalRef.hide();
+        this.isLoading = false;
+      }
+    });
   }
 
   initializeForm(){
@@ -47,22 +78,8 @@ export class ReturnCarModalComponent implements OnInit {
     });
   }
 
-  returnCar(){
-    const requestBody: ReturnCar = {
-      rentalId: this.rentalId,
-      isDamaged: this.rentalForm.controls['carDamaged'].value === 'Yes' ? true : false
-    };
-    this.carService.returnCar(requestBody).subscribe({
-      next: _ => {
-        this.toastr.success('Car returned successfully');
-        this.rentalService.activeRentals.update(value => value.filter(r => r._id !== this.rentalId));
-        this.bsModalRef.hide();
-      },
-      error: _ => {
-        this.toastr.error('Something went wrong');
-        this.bsModalRef.hide();
-      }
-    })
+  returnCar(): void {
+    this.returnSubject.next();
   }
 
   calculateDamagePenalty(){

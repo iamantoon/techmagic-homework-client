@@ -32,6 +32,6 @@
                 <strong>{{calculateTotalPenalty()}}</strong>
             </li>
         </ul>
-        <button type="button" class="btn btn-lg btn-primary mt-2 w-100" (click)="returnCar()">Great, thanks!</button>
+        <button type="button" class="btn btn-lg btn-primary mt-2 w-100" [disabled]="isLoading" (click)="returnCar()">Great, thanks!</button>
     </div>
 </div>

@@ -9,6 +9,8 @@ import { CarService } from '../../_services/car.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgOptimizedImage } from '@angular/common'
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rent-car-modal',
@@ -37,12 +39,40 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
   rentDays: number = 1;
   totalRentCost: number = 0;
   rentCostSubscription?: Subscription;
+  isLoading = false;
+  rentSubject = new Subject<void>();
 
   ngOnInit(): void {
     this.initializeForm();
     this.setMinDate();
     this.calculateRentCost();
     this.subscribeToDateChanges();
+    this.rentSubject.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => this.isLoading = true),
+      switchMap(() => {
+        if (this.id && this.authService.currentUser()) {
+          const requestBody: RentCar = {
+            expectedReturnDate: this.rentForm.controls['date'].value
+          };
+          return this.carService.rentCar(this.id, requestBody);
+        }
+        return [];
+      })
+    ).subscribe({
+      next: _ => {
+        this.carService.cars.update(value => value.filter(c => c._id !== this.id));
+        this.toastr.success('Car rented successfully');
+        this.router.navigate(['/cars']);
+        this.bsModalRef.hide();
+        this.isLoading = false;
+      },
+      error: err => {
+        this.toastr.error('Failed to rent car');
+        this.isLoading = false;
+      }
+    });
   }
 
   initializeForm() {
@@ -68,6 +98,10 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
   }
 
   rent(): void {
+    this.rentSubject.next();
+  }
+
+  /* rent(): void {
     if (this.id && this.authService.currentUser()){
       const requestBody: RentCar = {
         expectedReturnDate: this.rentForm.controls['date'].value
@@ -79,7 +113,7 @@ export class RentCarModalComponent implements OnInit, OnDestroy {
         this.bsModalRef.hide();
       });
     }
-  }
+  } */
 
   private setMinDate(){
     const today = new Date();

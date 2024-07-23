@@ -41,6 +41,6 @@
     </div>
     <div class="buttons">
         <button type="button" class="btn btn-outline-primary" (click)="bsModalRef.hide()">Close</button>
-        <button type="button" class="btn btn-success" (click)="rent()">Rent</button>
+        <button type="button" class="btn btn-success" [disabled]="isLoading" (click)="rent()">Rent</button>
     </div>
 </div>
