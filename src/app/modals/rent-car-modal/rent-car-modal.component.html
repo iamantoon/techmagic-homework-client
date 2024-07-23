@@ -14,12 +14,16 @@
     <hr>
     <div>
         <div class="d-flex justify-content-between">
-            <h6 class="text-secondary">Price (per day)</h6>
-            <h6 class="text-dark">{{currencyFormatter(rentCost)}}</h6>
+            <h6 class="text-secondary">Initial price (per day)</h6>
+            <h6 class="text-dark">{{currencyFormatter(rentCost + discount)}}</h6>
         </div>
         <div class="d-flex justify-content-between">
             <h6 class="text-secondary">Discount (per day)</h6>
             <h6 class="text-dark">{{currencyFormatter(discount)}}</h6>
+        </div>
+        <div class="d-flex justify-content-between" *ngIf="discount > 0">
+            <h6 class="text-secondary">Discount price (per day)</h6>
+            <h6 class="text-dark">{{currencyFormatter(rentCost)}}</h6>
         </div>
         <div class="d-flex justify-content-between">
             <h6 class="text-secondary">Return date</h6>

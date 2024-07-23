@@ -7,7 +7,7 @@ import { DatePickerComponent } from '../../_forms/date-picker/date-picker.compon
 import { Subscription } from 'rxjs';
 import { CarService } from '../../_services/car.service';
 import { ToastrService } from 'ngx-toastr';
-import { NgOptimizedImage } from '@angular/common'
+import { NgIf, NgOptimizedImage } from '@angular/common'
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operato
 @Component({
   selector: 'app-rent-car-modal',
   standalone: true,
-  imports: [ReactiveFormsModule, DatePickerComponent, NgOptimizedImage],
+  imports: [ReactiveFormsModule, DatePickerComponent, NgOptimizedImage, NgIf],
   templateUrl: './rent-car-modal.component.html',
   styleUrl: './rent-car-modal.component.scss'
 })
