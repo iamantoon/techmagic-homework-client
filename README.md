@@ -4,6 +4,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Installation
 
+Download zip or clone the repository:
+
+   ```sh
+   git clone <repository-url>
+   cd <repository-directory>
+   ```
+
 Run `npm install` to install dependencies
 
 ## Development server
