@@ -25,6 +25,7 @@ export class ReturnCarItemComponent {
         model: this.rental().car.carModel,
         rentCost: this.rental().finalRentalCost,
         startDate: this.rental().startDate,
+        expectedReturnDate: this.rental().expectedReturnDate,
         carId: this.rental().carId
       }
     }

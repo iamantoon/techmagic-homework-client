@@ -87,8 +87,8 @@ export class ReturnCarModalComponent implements OnInit {
   }
 
   calculateLateReturnPenalty(): string {
-    if (this.actualReturnDate > this.expectedReturnDate) {
-			const lateDays = (this.actualReturnDate.getTime() - this.expectedReturnDate.getTime()) / (1000 * 3600 * 24);
+    if (new Date() > new Date(this.expectedReturnDate)) {
+			const lateDays = (new Date().getTime() - new Date(this.expectedReturnDate).getTime()) / (1000 * 3600 * 24);
       const formattedPenalty = this.currencyFormatter(lateDays * 50);
 			return formattedPenalty;
 		}
@@ -97,8 +97,8 @@ export class ReturnCarModalComponent implements OnInit {
 
   calculateTotalPenalty(): string {
 		let penalty = 0;
-		if (this.actualReturnDate > this.expectedReturnDate) {
-			const lateDays = (this.actualReturnDate.getTime() - this.expectedReturnDate.getTime()) / (1000 * 3600 * 24);
+		if (new Date() > new Date(this.expectedReturnDate)) {
+			const lateDays = (new Date().getTime() - new Date(this.expectedReturnDate).getTime()) / (1000 * 3600 * 24);
 			penalty += lateDays * 50;
 		}
 		if (this.rentalForm.controls['carDamaged'].value === 'Yes') penalty += 200;
